@@ -4,6 +4,7 @@ class MealDetailModel extends MealModel {
   String area;
   String instruction;
   List<Recipe> recipe;
+  
 
   MealDetailModel({
     required super.mealId,
@@ -18,18 +19,13 @@ class MealDetailModel extends MealModel {
     int id = int.tryParse(data["idMeal"].toString()) ?? -1;
     List<Recipe> temp = [];
 
-    print(id);
-
     for (var i = 1; i <= 20; i++) {
       String? strIngredient = data["strIngredient$i"];
       String? strMeasure = data["strMeasure$i"];
 
       if (strIngredient == "") {
-        print("break");
         break;
       } else {
-        print(i);
-
         Ingredient ingredientModel_ = Ingredient.fromApi(data: {
           "strIngredient1": strIngredient,
           "strImage":
@@ -41,8 +37,6 @@ class MealDetailModel extends MealModel {
         temp.add(temp__);
       }
     }
-
-
     return MealDetailModel(
         mealId: id,
         mealName: data["strMeal"].toString(),

@@ -20,7 +20,7 @@ class MealDetailPage extends StatelessWidget {
         body: Column(
           children: [
             SizedBox(
-                    height: 400,
+                    height: 300,
                     width: double.infinity,
                     child: Hero(
                       tag: data_.mealImage,
@@ -31,66 +31,66 @@ class MealDetailPage extends StatelessWidget {
                     ),
                   ),
             Expanded(
-              child: ValueListenableBuilder(
-                valueListenable: controller.xFetching,
-                builder: (context, value, child) {
-                  if (value) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    return Column(
-                      children: [
-                      
-                        SizedBox(
-                          width: double.infinity,
-                          height: 150,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: controller.detailModel.recipe
-                                  .map((toElement) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 90,
-                                        child: Image.network(toElement
-                                            .ingredient.image),
-                                      ),
-                                      SizedBox(
-                                          height: 40,
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                toElement
-                                                    .ingredient.ingredientName,
-                                                style: const TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
+              child: SingleChildScrollView(
+                child: ValueListenableBuilder(
+                  valueListenable: controller.xFetching,
+                  builder: (context, value, child) {
+                    if (value) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      return Column(
+                        children: [
+                        
+                          SizedBox(
+                            width: double.infinity,
+                            height: 100,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: controller.detailModel.recipe
+                                    .map((toElement) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 50,
+                                          child: Image.network(toElement
+                                              .ingredient.image),
+                                        ),
+                                        SizedBox(
+                                            height: 30,
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  toElement
+                                                      .ingredient.ingredientName,
+                                                  style: const TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
                                                 ),
-                                              ),
-                                              Text(
-                                                toElement.measurement
-                                                    .toString()
-                                                    .toUpperCase(),
-                                                style: const TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
+                                                Text(
+                                                  toElement.measurement
+                                                      .toString()
+                                                      .toUpperCase(),
+                                                  style: const TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
-                                          )),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
+                                              ],
+                                            )),
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Container(
+                          Container(
                             width: double.infinity,
                             decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
@@ -111,24 +111,20 @@ class MealDetailPage extends StatelessWidget {
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    Expanded(
-                                      child: SingleChildScrollView(
-                                        child: Text(
-                                          controller.detailModel.instruction 
-                                             ,
-                                          style: const TextStyle(
-                                              color: Colors.white, fontSize: 13),
-                                        ),
-                                      ),
+                                    Text(
+                                      controller.detailModel.instruction 
+                                         ,
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 13),
                                     )
                                   ],
                                 )),
-                          ),
-                        )
-                      ],
-                    );
-                  }
-                },
+                          )
+                        ],
+                      );
+                    }
+                  },
+                ),
               ),
             ),
           ],
